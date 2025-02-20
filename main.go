@@ -14,7 +14,7 @@ func main() {
 	cortana.AddConfig("~/.config/guru/guru.json", unmarshaler) // deprecated
 	cortana.AddConfig("guru.yaml", cortana.UnmarshalFunc(yaml.Unmarshal))
 	cortana.AddConfig("~/.guru/config", cortana.UnmarshalFunc(yaml.Unmarshal))
-	cortana.Use(cortana.ConfFlag("--conf", "-c", unmarshaler))
+	// cortana.Use(cortana.ConfFlag("--conf", "-c", unmarshaler))
 
 	cortana.AddRootCommand(g.ChatCommand)
 	cortana.AddCommand("chat", g.ChatCommand, "chat with ChatGPT")

@@ -16,7 +16,8 @@ type Question struct {
 	// ChatGPTOptions
 	ConversationId string `json:"conversation_id"`
 	// Messages []*Message `json:"messages"`
-	Prompt string `json:"prompt"`
+	Prompt  string `json:"prompt"`
+	RoleBiz string `json:"role_biz"`
 }
 
 func (q *Question) New() any {

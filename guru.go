@@ -106,6 +106,7 @@ type ChatCommandOptions struct {
 	SessionID         string        `cortana:"--session-id, -s,, the session id" yaml:"session-id,omitempty"`
 	Renderer          string        `cortana:"--renderer,, markdown, the render type, can be text, markdown, json" yaml:"renderer,omitempty"`
 	Texts             []string      `cortana:"text, -" yaml:"-"`
+	Translate2Cn      bool          `cortana:"-c, -, false" yaml:"-"`
 }
 
 // chatCommand chats with ChatGPT
@@ -203,6 +204,12 @@ func (g *Guru) ChatCommand() {
 
 	eval := func(text string) {
 	feedback:
+		var role string
+		if opts.Translate2Cn {
+			role = "translate2cn"
+		} else {
+			role = "normal"
+		}
 		copts := &ChatOptions{
 			ChatGPTOptions:    opts.ChatGPTOptions,
 			System:            opts.System,
@@ -213,6 +220,7 @@ func (g *Guru) ChatCommand() {
 			Renderer:          opts.Renderer,
 			NonInteractive:    opts.NonInteractive,
 			DisableAutoShrink: opts.DisableAutoShrink,
+			RoleBiz:           role,
 		}
 		// add to guru info, so these args could be set by :set command
 		gi.copts = copts

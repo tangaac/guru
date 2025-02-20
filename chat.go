@@ -22,6 +22,7 @@ type ChatOptions struct {
 	NonInteractive    bool   `yaml:"non-interactive"`
 	DisableAutoShrink bool   `yaml:"disable-auto-shrink"`
 	Text              string `yaml:"-"`
+	RoleBiz           string `yaml:"role-biz"`
 }
 
 type ChatCommand struct {
@@ -65,7 +66,8 @@ retry:
 		// ChatGPTOptions: opts.ChatGPTOptions,
 		// Messages:       c.sess.Messages(),
 		ConversationId: c.sess.sid,
-		Prompt: c.sess.Messages()[len(c.sess.Messages())-1].Content,
+		Prompt:         c.sess.Messages()[len(c.sess.Messages())-1].Content,
+		RoleBiz:        opts.RoleBiz,
 	}
 
 	// issue a request to the api
