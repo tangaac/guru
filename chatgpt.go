@@ -70,7 +70,6 @@ type ChatGPTOptions struct {
 	// User             string  `yaml:"user,omitempty" json:"user,omitempty" cortana:"--chatgpt.user, -, , A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse."`
 }
 
-
 type ChatGPTClient struct {
 	opts *ChatGPTOptions
 	cli  *chat.Client[*Question, *AnswerChunk]

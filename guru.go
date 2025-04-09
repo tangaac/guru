@@ -106,7 +106,8 @@ type ChatCommandOptions struct {
 	SessionID         string        `cortana:"--session-id, -s,, the session id" yaml:"session-id,omitempty"`
 	Renderer          string        `cortana:"--renderer,, markdown, the render type, can be text, markdown, json" yaml:"renderer,omitempty"`
 	Texts             []string      `cortana:"text, -" yaml:"-"`
-	Translate2Cn      bool          `cortana:"-c, -, false" yaml:"-"`
+	Translate2Cn      bool          `cortana:"--chinese, -c, false, translate user input to chinese (prior than -en)" yaml:"-"`
+	Translate2En      bool          `cortana:"--english, -en, false, translate user input to english" yaml:"-"`
 }
 
 // chatCommand chats with ChatGPT
@@ -207,6 +208,8 @@ func (g *Guru) ChatCommand() {
 		var role string
 		if opts.Translate2Cn {
 			role = "translate2cn"
+		} else if opts.Translate2En {
+			role = "translate2en"
 		} else {
 			role = "normal"
 		}
